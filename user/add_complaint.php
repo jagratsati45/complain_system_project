@@ -12,11 +12,11 @@
     <form  action="add_complaint_process.php" method="POST" class="complaint-form">
         <h2>Add Complaint</h2>
 
-        <label>Title</label>
-        <input type="text"  name="title" placeholder="Title" required>
+        <label>Problem Title</label>
+        <input type="text"  name="title" placeholder="Enter your related problem here" required>
 
         <label>Description</label>
-        <textarea rows="5"  name="description" placeholder="Description" required></textarea>
+        <textarea rows="5"  name="description" placeholder="Enter your problem in detail" required></textarea>
 
         <button type="submit">Submit</button>
     </form>

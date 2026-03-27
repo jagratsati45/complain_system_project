@@ -12,6 +12,10 @@ $user_id = $_SESSION['user_id'];
 
 $query = "SELECT * FROM complaints WHERE user_id='$user_id'";
 $result = mysqli_query($conn, $query);
+
+$query1 = "SELECT name FROM users WHERE id='$user_id'";
+$res_user = mysqli_query($conn, $query1);
+$user = mysqli_fetch_assoc($res_user);
 ?>
 
 <!DOCTYPE html>
@@ -27,16 +31,10 @@ $result = mysqli_query($conn, $query);
 <body>
 
     <div class="container">
-
-        <!-- Welcome -->
-        <h2>Welcome, User 👋</h2>
-
-        <!-- Add Complaint Button -->
+       <h2>Welcome, <?php echo $user['name']; ?> 👋</h2>
         <button class="add-btn" onclick="window.location.href='add_complaint.php'">
             Add Complaint
         </button>
-
-        <!-- Table -->
         <div class="table-box">
             <table>
                 <thead>

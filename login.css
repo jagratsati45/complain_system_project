@@ -1,0 +1,118 @@
+body { 
+    background-color: #4facfe; 
+    background-image: linear-gradient(to bottom, #4facfe, #00f2fe); 
+    min-height: 100vh; 
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+}
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+#div {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form{ 
+    background: #fff;
+    padding: 40px 10px 40px 40px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+label {
+    font-size: 14px;
+    font-weight: 500;
+}
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 18px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register-link a {
+    text-decoration: none;
+    color: #4c5bd4;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: #4c5bd4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background: #3949ab;
+}
+form > a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    float: none;
+}
+
+form {
+    background: white;
+    padding: 40px;
+    width: 90%;        
+    max-width: 400px;  
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+    .right-side-pop {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 10000;
+
+      opacity: 0;
+      transform: translateX(100px);
+      transition: all 0.5s ease-in-out;
+      visibility: hidden;
+    }
+
+    .right-side-pop.show {
+      opacity: 1;
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+
+@media (max-width: 480px) {
+    form {
+        padding: 25px;
+    }
+
+    a {
+        float: none;
+        display: block;
+        margin-top: 5px;
+        text-align: right;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}

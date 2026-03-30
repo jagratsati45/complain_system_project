@@ -5,7 +5,7 @@ include("../config/db.php");
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$stmt = $conn->prepare("SELECT id, password, role FROM users WHERE email=?");
+$stmt = $conn->prepare("SELECT id, name, password, role FROM users WHERE email=?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -16,10 +16,15 @@ if ($user && password_verify($password, $user['password'])) {
 
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['role'] = $user['role'];
-    
+    $_SESSION['name'] = $user['name']; // store name
 
-    echo "success"; 
+    if ($user['role'] == 'admin') {
+        echo "admin";
+    } else if ($user['role'] == 'department') {
+        echo "department";
+    } else {
+        echo "user";
+    }
 } else {
     echo "invalid";
 }
-?>

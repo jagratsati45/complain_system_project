@@ -2,12 +2,26 @@
 session_start();
 include("../config/db.php");
 
-$id = $_GET['id'];
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php");
+    exit();
+}
 
-$query = "SELECT * FROM complaints WHERE id='$id'";
-$result = mysqli_query($conn, $query);
+$id = intval($_GET['id']);
+$user_id = $_SESSION['user_id'];
 
-$data = mysqli_fetch_assoc($result);
+// Verify ownership: user can only view their own complaints
+$stmt = $conn->prepare("SELECT * FROM complaints WHERE id=? AND user_id=?");
+$stmt->bind_param("ii", $id, $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$data = $result->fetch_assoc();
+
+if (!$data) {
+    header("Location: dashboard.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,24 +38,24 @@ $data = mysqli_fetch_assoc($result);
 
     <div class="detail">
         <span class="label">Title:</span>
-        <?php echo $data['title']; ?>
+        <?php echo htmlspecialchars($data['title']); ?>
     </div>
 
     <div class="detail">
         <span class="label">Description:</span>
-        <?php echo $data['description']; ?>
+        <?php echo htmlspecialchars($data['description']); ?>
     </div>
 
     <div class="detail">
         <span class="label">Status:</span>
         <span class="status <?php echo strtolower($data['status']); ?>">
-            <?php echo $data['status']; ?>
+            <?php echo htmlspecialchars($data['status']); ?>
         </span>
     </div>
 
     <div class="detail">
         <span class="label">Date:</span>
-        <?php echo $data['created_at']; ?>
+        <?php echo htmlspecialchars($data['created_at']); ?>
     </div>
 
     <button class="back-btn" onclick="window.location.href='dashboard.php'">

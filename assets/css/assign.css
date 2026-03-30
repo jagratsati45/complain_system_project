@@ -1,0 +1,63 @@
+/* Center whole page */
+body {
+    font-family: Arial;
+    background: #f4f6f9;
+}
+
+/* Main card */
+.container {
+    width: 50%;
+    margin: 80px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+h2 {
+    margin-bottom: 25px;
+}
+
+/* Inner form box */
+.form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Label */
+label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Row (dropdown + button) */
+.form-row {
+    display: flex;
+    gap: 10px;
+}
+
+/* Dropdown */
+select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
+
+/* Assign button */
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #4c5fd7;
+    color: white;
+    cursor: pointer;
+}
+
+/* Back button */
+.back-btn {
+    background: #6c757d;
+    width: fit-content;
+}

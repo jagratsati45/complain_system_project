@@ -45,11 +45,20 @@
                 .then(data => {
                     console.log("Server:", data);
 
-                    if (data === "success") {
+                    if (data === "admin") {
+                        showToast("Admin login successful");
+                        setTimeout(() => {
+                            window.location.href = "admin/dashboard.php";
+                        }, 1000);
+                    } else if (data === "user") {
                         showToast("Login successful");
-
                         setTimeout(() => {
                             window.location.href = "user/dashboard.php";
+                        }, 1000);
+                    } else if (data === "department") {
+                        showToast("Department login successful");
+                        setTimeout(() => {
+                            window.location.href = "department/dashboard.php";
                         }, 1000);
                     } else if (data === "invalid") {
                         showToast("Invalid email or password");

@@ -10,12 +10,11 @@ include("../config/db.php");
 
 $user_id = $_SESSION['user_id'];
 
-$query = "SELECT * FROM complaints WHERE user_id='$user_id'";
-$result = mysqli_query($conn, $query);
+$stmt = $conn->prepare("SELECT * FROM complaints WHERE user_id=?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-$query1 = "SELECT name FROM users WHERE id='$user_id'";
-$res_user = mysqli_query($conn, $query1);
-$user = mysqli_fetch_assoc($res_user);
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +30,10 @@ $user = mysqli_fetch_assoc($res_user);
 <body>
 
     <div class="container">
-       <h2>Welcome, <?php echo $user['name']; ?> 👋</h2>
+        <div class="dashboard-header">
+            <h2>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?> 👋</h2>
+            <a href="../auth/logout.php" class="logout-btn">Logout</a>
+        </div>
         <button class="add-btn" onclick="window.location.href='add_complaint.php'">
             Add Complaint
         </button>
@@ -50,13 +52,13 @@ $user = mysqli_fetch_assoc($res_user);
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
 
                         <tr>
-                            <td><?php echo $row['title']; ?></td>
+                            <td><?php echo htmlspecialchars($row['title']); ?></td>
 
                             <td class="<?php echo strtolower($row['status']); ?>">
-                                <?php echo $row['status']; ?>
+                                <?php echo htmlspecialchars($row['status']); ?>
                             </td>
 
-                            <td><?php echo $row['created_at']; ?></td>
+                            <td><?php echo htmlspecialchars($row['created_at']); ?></td>
 
                             <td><a href="view_complaint.php?id=<?php echo $row['id']; ?>">
                                     <button class="view-btn">View</button>

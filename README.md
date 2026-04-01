@@ -187,55 +187,7 @@ http://localhost/complain_system_project/login.php
 
 ---
 
-## 🗄️ Database Setup
 
-Open **phpMyAdmin** → Create a new database named `complain_system` → Run the following SQL:
-
-```sql
--- Create database
-CREATE DATABASE IF NOT EXISTS complain_system;
-USE complain_system;
-
--- Users table
-CREATE TABLE users (
-    id          INT AUTO_INCREMENT PRIMARY KEY,
-    name        VARCHAR(100) NOT NULL,
-    email       VARCHAR(150) UNIQUE NOT NULL,
-    password    VARCHAR(255) NOT NULL,
-    role        ENUM('admin', 'user', 'department') DEFAULT 'user',
-    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Departments table
-CREATE TABLE departments (
-    id          INT AUTO_INCREMENT PRIMARY KEY,
-    name        VARCHAR(100) NOT NULL,
-    email       VARCHAR(150) UNIQUE NOT NULL,
-    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Complaints table
-CREATE TABLE complaints (
-    id              INT AUTO_INCREMENT PRIMARY KEY,
-    user_id         INT NOT NULL,
-    department_id   INT,
-    title           VARCHAR(200) NOT NULL,
-    description     TEXT NOT NULL,
-    status          ENUM('pending', 'in_progress', 'resolved') DEFAULT 'pending',
-    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (department_id) REFERENCES departments(id)
-);
-
--- Default admin account (password: admin123)
-INSERT INTO users (name, email, password, role)
-VALUES ('Admin', 'admin@system.com', '$2y$10$examplehashedpassword', 'admin');
-```
-
-> ⚠️ **Note:** Always use `password_hash()` in PHP for storing passwords. Never store plain text passwords.
-
----
 
 ## 🔐 Default Test Credentials
 

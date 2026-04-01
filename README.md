@@ -56,10 +56,10 @@ Whether you're a student, institution, or organization — this system helps bri
 |---|---|
 | 🔐 User Registration & Login | ✅ Done |
 | 👤 Role-based Authentication (Admin / User / Department) | ✅ Done |
-| 📝 Complaint Submission | 🚧 In Progress |
-| 📂 Department-wise Complaint Routing | 🚧 In Progress |
-| ✅ Complaint Status Tracking | 🚧 In Progress |
-| 🛠️ Admin Dashboard | 🚧 In Progress |
+| 📝 Complaint Submission |  ✅ Done  |
+| 📂 Department-wise Complaint Routing | ✅ Done |
+| ✅ Complaint Status Tracking | ✅ Done  |
+| 🛠️ Admin Dashboard | ✅ Done  |
 | 📊 Complaint Analytics | ⏳ Planned |
 | 📧 Email Notifications | ⏳ Planned |
 

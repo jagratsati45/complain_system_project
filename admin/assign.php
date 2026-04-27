@@ -2,15 +2,28 @@
 session_start();
 include("../config/db.php");
 
-// security
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
     header("Location: ../login.php");
     exit();
 }
 
-$id = $_GET['id'];
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// get departments
+if ($id <= 0) {
+    header("Location: dashboard.php");
+    exit();
+}
+
+$complaint_stmt = $conn->prepare("SELECT id FROM complaints WHERE id=? LIMIT 1");
+$complaint_stmt->bind_param("i", $id);
+$complaint_stmt->execute();
+$complaint_result = $complaint_stmt->get_result();
+
+if ($complaint_result->num_rows === 0) {
+    header("Location: dashboard.php");
+    exit();
+}
+
 $dept = mysqli_query($conn, "SELECT * FROM departments");
 ?>
 
@@ -39,7 +52,7 @@ $dept = mysqli_query($conn, "SELECT * FROM departments");
                 <select name="department_id">
                     <?php while ($d = mysqli_fetch_assoc($dept)) { ?>
                         <option value="<?php echo $d['id']; ?>">
-                            <?php echo $d['name']; ?>
+                            <?php echo htmlspecialchars($d['name']); ?>
                         </option>
                     <?php } ?>
                 </select>

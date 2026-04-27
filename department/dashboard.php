@@ -1,22 +1,21 @@
 <?php
 session_start();
 include("../config/db.php");
+include("../config/department_helper.php");
 
-// security
-if (!isset($_SESSION['role']) || $_SESSION['role'] != 'department') {
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] != 'department') {
     header("Location: ../login.php");
     exit();
 }
 
-// Look up the department_id for the logged-in department user
-$dept_user_id = $_SESSION['user_id'];
-$dept_stmt = $conn->prepare("SELECT id FROM departments WHERE user_id=?");
-$dept_stmt->bind_param("i", $dept_user_id);
-$dept_stmt->execute();
-$dept_result = $dept_stmt->get_result();
-$dept_row = $dept_result->fetch_assoc();
+$department_id = get_department_id_for_user($conn, intval($_SESSION['user_id']), $_SESSION['name']);
 
-$department_id = $dept_row ? $dept_row['id'] : 0;
+if ($department_id <= 0) {
+    session_unset();
+    session_destroy();
+    header("Location: ../login.php");
+    exit();
+}
 
 $stmt = $conn->prepare("SELECT * FROM complaints WHERE department_id=?");
 $stmt->bind_param("i", $department_id);

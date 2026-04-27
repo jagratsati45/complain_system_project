@@ -1,50 +1,52 @@
-
-body { 
-    background-color: #4facfe; 
-    background-image: linear-gradient(to bottom, #4facfe, #00f2fe); 
-    min-height: 100vh; 
-    margin: 0; 
-    font-family: Arial, sans-serif; 
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2f80ed 0%, #56ccf2 100%);
 }
 
 .container {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .register-form {
-    background: rgb(255, 255, 255);
-    padding: 35px 50px 35px 35px;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 35px 40px;
     width: 90%;
     max-width: 450px;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 28px rgba(0, 39, 105, 0.18);
 }
 
 h1 {
     text-align: center;
     margin-bottom: 20px;
+    color: #15325b;
 }
 
 label {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
+    color: #23436f;
 }
 
 input {
     width: 100%;
+    box-sizing: border-box;
     padding: 12px;
     margin: 8px 0 18px 0;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #bfcde4;
 }
 
 button {
     width: 100%;
     padding: 12px;
-    background: #4c5bd4;
+    background: #3f65d6;
     color: white;
     border: none;
     border-radius: 6px;
@@ -53,7 +55,7 @@ button {
 }
 
 button:hover {
-    background: #3949ab;
+    background: #2f55c5;
 }
 
 .login-link {
@@ -63,7 +65,7 @@ button:hover {
 
 .login-link a {
     text-decoration: none;
-    color: #4c5bd4;
+    color: #2f55c5;
 }
 
 @media (max-width: 480px) {

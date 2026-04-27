@@ -2,15 +2,19 @@
 session_start();
 include("../config/db.php");
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
     header("Location: ../login.php");
     exit();
 }
 
-$id = intval($_GET['id']);
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+if ($id <= 0) {
+    header("Location: dashboard.php");
+    exit();
+}
 $user_id = $_SESSION['user_id'];
 
-// Verify ownership: user can only view their own complaints
 $stmt = $conn->prepare("SELECT * FROM complaints WHERE id=? AND user_id=?");
 $stmt->bind_param("ii", $id, $user_id);
 $stmt->execute();

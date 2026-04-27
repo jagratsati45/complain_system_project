@@ -1,115 +1,100 @@
-body { 
-    background-color: #4facfe; 
-    background-image: linear-gradient(to bottom, #4facfe, #00f2fe); 
-    min-height: 100vh; 
-    margin: 0; 
-    font-family: Arial, sans-serif; 
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2f80ed 0%, #56ccf2 100%);
 }
-h1{
+
+h1 {
     text-align: center;
     margin-bottom: 20px;
+    color: #15325b;
 }
+
 #div {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
-form{ 
-    background: #fff;
-    padding: 40px 10px 40px 40px;
-    width: 400px;
+
+.login-form {
+    background: rgba(255, 255, 255, 0.96);
+    padding: 36px 34px;
+    width: min(400px, 100%);
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 28px rgba(0, 39, 105, 0.18);
 }
+
 label {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
+    color: #23436f;
 }
+
 input[type="email"],
 input[type="password"] {
     width: 100%;
+    box-sizing: border-box;
     padding: 12px;
     margin: 8px 0 18px 0;
     border-radius: 6px;
-    border: 1px solid #ccc;
-}
-input[type="radio"] {
-    margin-right: 5px;
+    border: 1px solid #bfcde4;
 }
 
 .register-link {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .register-link a {
     text-decoration: none;
-    color: #4c5bd4;
+    color: #2f55c5;
+    margin-left: 4px;
 }
+
 button {
     width: 100%;
     padding: 12px;
     margin-top: 15px;
-    background: #4c5bd4;
+    background: #3f65d6;
     color: white;
     border: none;
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
 }
+
 button:hover {
-    background: #3949ab;
-}
-form > a {
-    display: block;
-    text-align: center;
-    margin-top: 15px;
-    float: none;
+    background: #2f55c5;
 }
 
-form {
-    background: white;
-    padding: 40px;
-    width: 90%;        
-    max-width: 400px;  
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+.right-side-pop {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #1e3354;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.4s ease-in-out;
+    visibility: hidden;
 }
-    .right-side-pop {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #333;
-      color: white;
-      padding: 15px 25px;
-      border-radius: 5px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      z-index: 10000;
 
-      opacity: 0;
-      transform: translateX(100px);
-      transition: all 0.5s ease-in-out;
-      visibility: hidden;
-    }
-
-    .right-side-pop.show {
-      opacity: 1;
-      transform: translateX(0);
-      visibility: visible;
-    }
-
+.right-side-pop.show {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+}
 
 @media (max-width: 480px) {
-    form {
-        padding: 25px;
-    }
-
-    a {
-        float: none;
-        display: block;
-        margin-top: 5px;
-        text-align: right;
+    .login-form {
+        padding: 24px;
     }
 
     button {

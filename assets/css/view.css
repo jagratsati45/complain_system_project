@@ -60,3 +60,49 @@ h2 {
 .back-btn:hover {
     background: #2f55c5;
 }
+
+@media (max-width: 768px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        margin: 20px auto;
+        padding: 20px;
+        width: min(700px, 90%);
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .detail {
+        font-size: 15px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .back-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 16px auto;
+        padding: 14px;
+    }
+
+    h2 {
+        font-size: 17px;
+        margin-bottom: 14px;
+    }
+
+    .detail {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+}

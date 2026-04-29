@@ -52,15 +52,15 @@ $result = $stmt->get_result();
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
 
                         <tr>
-                            <td><?php echo htmlspecialchars($row['title']); ?></td>
+                            <td data-label="Title"><?php echo htmlspecialchars($row['title']); ?></td>
 
-                            <td class="<?php echo strtolower($row['status']); ?>">
+                            <td data-label="Status" class="<?php echo strtolower($row['status']); ?>">
                                 <?php echo htmlspecialchars($row['status']); ?>
                             </td>
 
-                            <td><?php echo htmlspecialchars($row['created_at']); ?></td>
+                            <td data-label="Date"><?php echo htmlspecialchars($row['created_at']); ?></td>
 
-                            <td><a href="view_complaint.php?id=<?php echo $row['id']; ?>">
+                            <td data-label="Action"><a href="view_complaint.php?id=<?php echo $row['id']; ?>">
                                     <button class="view-btn">View</button>
                                 </a></td>
                         </tr>

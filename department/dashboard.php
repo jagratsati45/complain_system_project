@@ -26,6 +26,8 @@ $result = $stmt->get_result();
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Department Dashboard</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
@@ -39,18 +41,21 @@ $result = $stmt->get_result();
     </div>
 
     <table>
-        <tr>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
 
         <?php while($row = mysqli_fetch_assoc($result)) { ?>
 
         <tr>
-            <td><?php echo htmlspecialchars($row['title']); ?></td>
-            <td><?php echo htmlspecialchars($row['status']); ?></td>
-            <td>
+            <td data-label="Title"><?php echo htmlspecialchars($row['title']); ?></td>
+            <td data-label="Status"><?php echo htmlspecialchars($row['status']); ?></td>
+            <td data-label="Action">
                 <a href="update_status.php?id=<?php echo $row['id']; ?>">
                     <button class="assign-btn">Update</button>
                 </a>
@@ -59,6 +64,7 @@ $result = $stmt->get_result();
 
         <?php } ?>
 
+        </tbody>
     </table>
 
 </div>

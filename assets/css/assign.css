@@ -67,3 +67,50 @@ button:hover {
 .back-btn:hover {
     background: #5b677c;
 }
+
+@media (max-width: 768px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        margin: 20px auto;
+        padding: 20px;
+        width: min(650px, 90%);
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    select {
+        min-width: 0;
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 16px auto;
+        padding: 16px;
+    }
+
+    h2 {
+        font-size: 17px;
+        margin-bottom: 16px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+}

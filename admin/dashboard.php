@@ -37,6 +37,8 @@ $dept_list_result = mysqli_query($conn, $dept_list_query);
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
@@ -63,16 +65,19 @@ $dept_list_result = mysqli_query($conn, $dept_list_query);
             </div>
 
             <table class="table-spaced">
-                <tr>
-                    <th>Department Name</th>
-                    <th>Department Email</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Department Name</th>
+                        <th>Department Email</th>
+                    </tr>
+                </thead>
+                <tbody>
 
                 <?php if ($dept_list_result && mysqli_num_rows($dept_list_result) > 0) { ?>
                     <?php while ($dept_row = mysqli_fetch_assoc($dept_list_result)) { ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($dept_row['name']); ?></td>
-                            <td><?php echo !empty($dept_row['email']) ? htmlspecialchars($dept_row['email']) : "Not Linked"; ?></td>
+                            <td data-label="Department"><?php echo htmlspecialchars($dept_row['name']); ?></td>
+                            <td data-label="Email"><?php echo !empty($dept_row['email']) ? htmlspecialchars($dept_row['email']) : "Not Linked"; ?></td>
                         </tr>
                     <?php } ?>
                 <?php } else { ?>
@@ -80,32 +85,36 @@ $dept_list_result = mysqli_query($conn, $dept_list_query);
                         <td colspan="2">No department accounts found.</td>
                     </tr>
                 <?php } ?>
+                </tbody>
             </table>
         </div>
 
         <table>
-            <tr>
-                <th>User</th>
-                <th>Title</th>
-                <th>Status</th>
-                <th>Department</th>
-                <th>Action</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Department</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
 
             <?php while ($row = mysqli_fetch_assoc($result)) { ?>
 
                 <tr>
-                    <td><?php echo htmlspecialchars($row['user_name']); ?></td>
-                    <td><?php echo htmlspecialchars($row['title']); ?></td>
-                    <td><?php echo htmlspecialchars($row['status']); ?></td>
+                    <td data-label="User"><?php echo htmlspecialchars($row['user_name']); ?></td>
+                    <td data-label="Title"><?php echo htmlspecialchars($row['title']); ?></td>
+                    <td data-label="Status"><?php echo htmlspecialchars($row['status']); ?></td>
 
-                    <td>
+                    <td data-label="Department">
                         <?php
                         echo $row['dept_name'] ? htmlspecialchars($row['dept_name']) : "Not Assigned";
                         ?>
                     </td>
 
-                    <td>
+                    <td data-label="Action">
                         <?php
                         if ($row['status'] == 'Resolved') {
                             echo "<span style='color:green; font-weight:bold;'>✔ Completed</span>";
@@ -120,6 +129,7 @@ $dept_list_result = mysqli_query($conn, $dept_list_query);
 
             <?php } ?>
 
+            </tbody>
         </table>
 
     </div>

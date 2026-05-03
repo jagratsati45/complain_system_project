@@ -171,7 +171,7 @@ The app supports two linking modes:
 ## Project Structure
 
 ```text
-complain_system_project/
+complaint-system/
 ├─ admin/
 ├─ assets/
 │  └─ css/

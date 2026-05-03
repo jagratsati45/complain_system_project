@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../config/db.php");
+$conn = require __DIR__ . "/../config/db.php";
 include("../config/department_helper.php");
 
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-function set_flash_and_redirect($message, $type = "error", $path = "create_department.php")
+function set_flash_and_redirect(string $message, string $type = "error", string $path = "create_department.php"): void
 {
     $_SESSION['admin_flash_message'] = $message;
     $_SESSION['admin_flash_type'] = $type;

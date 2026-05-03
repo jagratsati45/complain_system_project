@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role
     exit();
 }
 
-include("../config/db.php");
+$conn = require __DIR__ . "/../config/db.php";
 
 $user_id = $_SESSION['user_id'];
 

@@ -4,45 +4,83 @@
 
 # Complaint Management System
 
-A role-based complaint tracking web application built with **PHP + MySQL**.
+Role-based complaint tracking web app built with **PHP + MySQL**.
 
 ![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.x-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![HTML/CSS/JS](https://img.shields.io/badge/HTML-CSS-JS-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-
 ![Status](https://img.shields.io/badge/Status-Working-brightgreen?style=flat-square)
-![Setup](https://img.shields.io/badge/Setup-XAMPP%20%2B%20MySQL-blue?style=flat-square)
 
 </div>
 
 ---
 
-## 📌 Table of Contents
+## Table of Contents
 
-- [✨ Features](#-features)
-- [🧭 Pages / Routes](#-pages--routes)
-- [👥 Roles](#-roles)
-- [🔁 Flow](#-flow)
-- [🚀 Local Setup (XAMPP)](#-local-setup-xampp)
-- [🗄️ Database Setup](#%EF%B8%8F-database-setup)
-- [🧩 Project Structure](#-project-structure)
-- [🧰 Troubleshooting](#-troubleshooting)
-
----
-
-## ✨ Features
-
-- User registration + login
-- Role-based access: **Admin / User / Department**
-- Users can submit complaints and track status
-- Admin can create department accounts and assign complaints
-- Departments can update complaint status (`In Progress`, `Resolved`)
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Roles & Capabilities](#roles--capabilities)
+- [Pages / Routes](#pages--routes)
+- [Complaint Status Flow](#complaint-status-flow)
+- [Local Setup (XAMPP)](#local-setup-xampp)
+- [Database Setup](#database-setup)
+- [Project Structure](#project-structure)
+- [Troubleshooting](#troubleshooting)
 
 ---
 
-## 🧭 Pages / Routes
+## Overview
 
-| What | Path |
+This project is a simple complaint management system with **Admin**, **User**, and **Department** roles.  
+Users submit complaints, admins assign them to departments, and departments update the status.
+
+> First-time note: the **first registered account becomes Admin** automatically.
+
+---
+
+## Tech Stack
+
+- **PHP 8.x** (server-side)
+- **MySQL 8.x** (database)
+- **HTML / CSS / JavaScript** (UI)
+- **XAMPP** (recommended local stack)
+
+---
+
+## Features
+
+- User registration & login
+- Role-based dashboards
+- Submit complaints with title + description
+- Admin creates department accounts and assigns complaints
+- Department updates status to **In Progress** or **Resolved**
+- Session-based access control + hashed passwords
+
+---
+
+## Roles & Capabilities
+
+### 🙋 User
+- Register / login
+- Create complaints
+- Track complaint status and details
+
+### 🛡️ Admin
+- View all complaints
+- Create department accounts
+- Assign complaints to departments
+
+### 🏢 Department
+- Login from `department/login.php`
+- View assigned complaints
+- Update complaint status
+
+---
+
+## Pages / Routes
+
+| Purpose | Path |
 |---|---|
 | Login (Admin/User) | `login.php` |
 | Register | `register.php` |
@@ -59,81 +97,38 @@ A role-based complaint tracking web application built with **PHP + MySQL**.
 
 ---
 
-## 👥 Roles
-
-<details open>
-  <summary><b>🙋 User</b></summary>
-
-- Register/login
-- Create complaints (title + description)
-- Track status and view details
-
-</details>
-
-<details>
-  <summary><b>🏢 Department</b></summary>
-
-- Login from `department/login.php`
-- View assigned complaints
-- Update status to `In Progress` or `Resolved`
-
-</details>
-
-<details>
-  <summary><b>🛡️ Admin</b></summary>
-
-- View all complaints
-- Create department accounts
-- Assign complaints to departments
-
-</details>
-
-> First-time note: the **first registered account becomes Admin** automatically.
-
----
-
-## 🔁 Flow
+## Complaint Status Flow
 
 ```mermaid
 flowchart TD
-  REG[Register] --> LOGIN[Login]
-  LOGIN -->|user| U[User Dashboard]
-  LOGIN -->|admin| A[Admin Dashboard]
-  LOGIN -->|department| D[Department Dashboard]
-
-  U --> C[Create Complaint]
-  C --> P[Pending]
-  A --> AS[Assign to Department]
-  AS --> AD[Assigned]
-  D --> IP[In Progress]
+  U[User submits complaint] --> P[Pending]
+  A[Admin assigns department] --> AS[Assigned]
+  D[Department works] --> IP[In Progress]
   D --> RS[Resolved]
+  P --> A
 ```
 
 ---
 
-## 🚀 Local Setup (XAMPP)
+## Local Setup (XAMPP)
 
-1. Install XAMPP and start **Apache** + **MySQL**.
-2. Put this project folder into:
+1. Install **XAMPP** and start **Apache** + **MySQL**.
+2. Place this project in:
    - `C:\\xampp\\htdocs\\complaint-system`
-3. Create a MySQL database named: `complaint_system`
-4. Open in browser:
+3. Create a MySQL database named: `complaint_system`.
+4. Update credentials in `config/db.php`.
+5. Open in browser:
    - `http://localhost/complaint-system/login.php`
 
 ---
 
-## 🗄️ Database Setup
+## Database Setup
 
 ### Connection
 
 Edit `config/db.php` to match your MySQL credentials.
 
 ### Baseline schema
-
-This repo doesn’t include an `.sql` file yet. Use this baseline to create tables.
-
-<details>
-  <summary><b>Show baseline SQL</b></summary>
 
 ```sql
 CREATE DATABASE IF NOT EXISTS complaint_system;
@@ -164,23 +159,22 @@ CREATE TABLE IF NOT EXISTS complaints (
 );
 ```
 
-</details>
-
 ### Department linking behavior
 
-The app supports two ways to link department accounts:
+The app supports two linking modes:
 
 - If `departments.user_id` exists, it links by `user_id`.
 - Otherwise it links by matching `departments.name` with the department user `name`.
 
 ---
 
-## 🧩 Project Structure
+## Project Structure
 
 ```text
 complaint-system/
 ├─ admin/
-├─ assets/css/
+├─ assets/
+│  └─ css/
 ├─ auth/
 ├─ config/
 ├─ department/
@@ -192,20 +186,12 @@ complaint-system/
 
 ---
 
-## 🧰 Troubleshooting
-
-<details>
-  <summary><b>PHP shows syntax errors with &lt;&lt;&lt;&lt;&lt;&lt;&lt; markers</b></summary>
-
-That means a Git merge conflict is unresolved. Remove the conflict markers or re-run the merge and resolve conflicts.
-
-</details>
+## Troubleshooting
 
 <details>
   <summary><b>Department login shows "department_not_linked"</b></summary>
 
 Create the department via `admin/create_department.php`, then login again.
-
 </details>
 
 <details>
@@ -214,5 +200,4 @@ Create the department via `admin/create_department.php`, then login again.
 - Confirm MySQL is running in XAMPP.
 - Check credentials in `config/db.php`.
 - Ensure the database name is `complaint_system`.
-
 </details>

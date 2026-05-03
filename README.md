@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Megaphone.png" alt="Megaphone" width="110" />
+<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Megaphone.png" alt="Megaphone" width="120" />
 
 # Complaint Management System
 
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS complaints (
 The app supports two linking modes:
 
 - If `departments.user_id` exists, it links by `user_id`.
-- Otherwise it links by matching `departments.name` to the department user `name`.
+- Otherwise it links by matching `departments.name` with the department user `name`.
 
 ---
 

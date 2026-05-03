@@ -1,5 +1,5 @@
 <?php
-include("../config/db.php");
+$conn = require __DIR__ . "/../config/db.php";
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo "invalid_request";

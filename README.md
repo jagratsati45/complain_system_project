@@ -17,9 +17,8 @@
 <br/>
 
 ![Status](https://img.shields.io/badge/Status-In%20Development-orange?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square&logo=github)
-![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red?style=flat-square)
+![Setup](https://img.shields.io/badge/Setup-XAMPP%20%2B%20MySQL-blue?style=flat-square)
 
 </div>
 
@@ -29,14 +28,15 @@
 
 - [About the Project](#-about-the-project)
 - [Features](#-features)
+- [Pages / Routes](#-pages--routes)
 - [User Roles](#-user-roles)
+- [Roles Flow](#-roles-flow)
 - [Project Structure](#-project-structure)
 - [Tech Stack](#-tech-stack)
 - [Getting Started](#-getting-started)
 - [Database Setup](#-database-setup)
-- [Screenshots](#-screenshots)
+- [Troubleshooting](#-troubleshooting)
 - [Contributing](#-contributing)
-- [License](#-license)
 
 ---
 
@@ -56,12 +56,32 @@ Whether you're a student, institution, or organization — this system helps bri
 |---|---|
 | 🔐 User Registration & Login | ✅ Done |
 | 👤 Role-based Authentication (Admin / User / Department) | ✅ Done |
-| 📝 Complaint Submission |  ✅ Done  |
-| 📂 Department-wise Complaint Routing | ✅ Done |
-| ✅ Complaint Status Tracking | ✅ Done  |
-| 🛠️ Admin Dashboard | ✅ Done  |
-| 📊 Complaint Analytics | ⏳ Planned |
-| 📧 Email Notifications | ⏳ Planned |
+| 📝 Complaint Submission (title + description) | ✅ Done |
+| 🏢 Department accounts created by admin | ✅ Done |
+| 📌 Admin assignment to departments | ✅ Done |
+| ✅ Status tracking (`Pending` → `Assigned` → `In Progress` → `Resolved`) | ✅ Done |
+| 🔒 Secure passwords (`password_hash` / `password_verify`) | ✅ Done |
+| 📊 Analytics dashboard | ⏳ Not implemented |
+| 📧 Email notifications | ⏳ Not implemented |
+
+---
+
+## 🧭 Pages / Routes
+
+| What | Where |
+|---|---|
+| Login (Admin/User) | `login.php` |
+| Register | `register.php` |
+| Department login | `department/login.php` |
+| User dashboard | `user/dashboard.php` |
+| Add complaint | `user/add_complaint.php` |
+| View complaint | `user/view_complaint.php?id=...` |
+| Admin dashboard | `admin/dashboard.php` |
+| Create department account | `admin/create_department.php` |
+| Assign complaint | `admin/assign.php?id=...` |
+| Department dashboard | `department/dashboard.php` |
+| Update status | `department/update_status.php?id=...` |
+| Logout | `auth/logout.php` |
 
 ---
 
@@ -71,45 +91,58 @@ The system has **three distinct roles**, each with its own dashboard and access 
 
 ### 🙋 User
 - Register and log in to the system
-- Submit new complaints with description and category
+- Submit new complaints (title + description)
 - Track the status of submitted complaints
 - View complaint history
 
 ### 🏢 Department
-- Log in to a department-specific dashboard
+- Log in from `department/login.php`
 - View complaints assigned to the department
-- Update complaint status (Pending → In Progress → Resolved)
-- Add resolution notes or remarks
+- Update complaint status (`In Progress` or `Resolved`)
 
 ### 🛡️ Admin
 - Full system oversight from a central dashboard
-- Manage all users and departments
-- Assign complaints to appropriate departments
-- View analytics and complaint statistics
-- Delete or escalate complaints
+- Create department accounts
+- Assign complaints to departments
+
+> Note: The first account registered becomes `admin` automatically.
+
+---
+
+## 🔁 Roles Flow
+
+```mermaid
+flowchart TD
+    REG[Register] --> LOGIN[Login]
+    LOGIN -->|user| U[User dashboard]
+    LOGIN -->|admin| A[Admin dashboard]
+    LOGIN -->|department| D[Department dashboard]
+    U --> C[Create complaint]
+    C --> P[Pending]
+    A --> AS[Assign to department]
+    AS --> AD[Assigned]
+    D --> IP[In Progress]
+    D --> RS[Resolved]
+```
+
 
 ---
 
 ## 🗂️ Project Structure
 
 ```
-complain_system_project/
-│
-├── 📁 admin/               # Admin dashboard & management pages
-├── 📁 auth/                # Authentication processors
-│   ├── login_process.php
-│   └── register_process.php
-├── 📁 assets/
-│   └── css/               # Shared stylesheets
-├── 📁 config/              # Database connection & configuration
-├── 📁 department/          # Department dashboard
-├── 📁 user/                # User dashboard & complaint pages
-│
-├── 📄 login.php            # Login page (entry point)
-├── 📄 register.php         # Registration page
-├── 📄 login.css            # Login page styles
-├── 📄 register.css         # Register page styles
-└── 📄 .gitignore
+complaint-system/
+├── admin/                  # Admin dashboard & assignment pages
+├── assets/css/             # Shared stylesheets
+├── auth/                   # Login/register processors + logout
+├── config/                 # DB connection + helpers
+├── department/             # Department login/dashboard/status update
+├── user/                   # User dashboard + complaint create/view
+├── login.php               # Main login page (admin/user)
+├── register.php            # Registration page
+├── login.css
+├── register.css
+└── README.md
 ```
 
 ---
@@ -140,20 +173,23 @@ Make sure you have the following installed:
 
 ### 🧰 Installation
 
-**1. Clone the repository**
+**1. Get the project**
 
 ```bash
-git clone https://github.com/jagratsati45/complain_system_project.git
+# Option A: clone
+git clone <your-repo-url> complaint-system
+
+# Option B: download ZIP and extract as "complaint-system"
 ```
 
-**2. Move to your server's root directory**
+**2. Move it into your web server root**
 
 ```bash
 # For XAMPP on Windows
-cp -r complain_system_project C:/xampp/htdocs/
+cp -r complaint-system C:/xampp/htdocs/
 
 # For XAMPP on Linux/Mac
-cp -r complain_system_project /opt/lampp/htdocs/
+cp -r complaint-system /opt/lampp/htdocs/
 ```
 
 **3. Start Apache & MySQL** from the XAMPP Control Panel
@@ -162,40 +198,102 @@ cp -r complain_system_project /opt/lampp/htdocs/
 
 **5. Configure the DB connection**
 
-Open `config/db.php` (or similar) and update:
+Open `config/db.php` and update if needed:
 
 ```php
 <?php
-$host     = "localhost";
-$username = "root";
-$password = "";          // your MySQL password
-$database = "complain_system";
-
-$conn = mysqli_connect($host, $username, $password, $database);
+$conn = mysqli_connect("localhost", "root", "", "complaint_system");
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-?>
+
+return $conn;
 ```
 
 **6. Open the app in your browser**
 
 ```
-http://localhost/complain_system_project/login.php
+http://localhost/complaint-system/login.php
 ```
 
 ---
 
+## 🗄️ Database Setup
 
+### 1) Create the database
 
-## 🔐 Default Test Credentials
+Create a MySQL database named `complaint_system`.
 
-| Role | Email | Password |
-|---|---|---|
-| Admin | admin@system.com | admin123 |
-| User | Register yourself | — |
-| Department | Set up via admin | — |
+### 2) Create tables (baseline)
+
+This repo doesn’t include an SQL dump yet. Use this as a baseline and adjust as needed.
+
+<details>
+    <summary><b>Show baseline SQL</b></summary>
+
+```sql
+CREATE DATABASE IF NOT EXISTS complaint_system;
+USE complaint_system;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin','user','department') NOT NULL DEFAULT 'user'
+);
+
+CREATE TABLE IF NOT EXISTS departments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    user_id INT NULL
+);
+
+CREATE TABLE IF NOT EXISTS complaints (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    department_id INT NULL,
+    title VARCHAR(200) NOT NULL,
+    description TEXT NOT NULL,
+    status VARCHAR(30) NOT NULL DEFAULT 'Pending',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+</details>
+
+### 3) Department linking behavior (important)
+
+In `config/department_helper.php`, the app checks whether `departments.user_id` exists:
+
+- If it exists, departments are linked by `user_id`.
+- If it does not exist, departments are linked by matching department user `name` to `departments.name`.
+
+### 4) First admin account
+
+The first account registered (via `register.php`) becomes `admin` automatically.
+
+---
+
+## 🧰 Troubleshooting
+
+<details>
+    <summary><b>Department login shows “department_not_linked”</b></summary>
+
+- Create the department via the admin panel (`admin/create_department.php`).
+- Ensure there’s a matching row in `departments`.
+
+</details>
+
+<details>
+    <summary><b>Database connection failed</b></summary>
+
+- Make sure MySQL is running (XAMPP Control Panel).
+- Double-check credentials in `config/db.php`.
+- Confirm the DB is named `complaint_system`.
+
+</details>
 
 ---
 
@@ -219,32 +317,8 @@ git push origin feature/AmazingFeature
 
 ### 💡 Ideas for Contributions
 
-- [ ] Add `README` (you're reading it! ✅)
-- [ ] Build the complaint submission page
-- [ ] Add session-based auth checks on all dashboards
-- [ ] Implement `password_hash()` in registration
-- [ ] Add SQL schema file to the repo
-- [ ] Build admin analytics dashboard
-- [ ] Add email notifications on complaint status change
-- [ ] Make the UI mobile-responsive
-
----
-
-## 📄 License
-
-Distributed under the **MIT License**. See `LICENSE` for more information.
-
----
-
-<div align="center">
-
-### 🌟 If you find this project helpful, give it a star!
-
-[![Star on GitHub](https://img.shields.io/github/stars/jagratsati45/complain_system_project?style=social)](https://github.com/jagratsati45/complain_system_project)
-
-<br/>
-
-Made with ❤️ by [jagratsati45](https://github.com/jagratsati45)
-
-
-</div>
+- [ ] Add an SQL dump file to the repo (one-click setup)
+- [ ] Add complaint filtering/search on dashboards
+- [ ] Add better status history / timeline
+- [ ] Add email notifications on status change
+- [ ] Add analytics (counts by status/department)

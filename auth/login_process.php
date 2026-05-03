@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../config/db.php");
+$conn = require __DIR__ . "/../config/db.php";
 include("../config/department_helper.php");
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

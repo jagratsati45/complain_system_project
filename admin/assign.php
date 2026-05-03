@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../config/db.php");
+$conn = require __DIR__ . "/../config/db.php";
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
     header("Location: ../login.php");

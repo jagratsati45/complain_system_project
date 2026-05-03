@@ -1,168 +1,186 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Megaphone.png" alt="Megaphone" width="120" />
+<a href="https://github.com/jagratsati45/complain_system_project">
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Megaphone.png" width="110" alt="Megaphone"/>
+</a>
 
-# 📋 Complaint Management System
+# Local Service and Complaint Management System
+### A role-based complaint tracking web application (PHP + MySQL)
 
-### *A role-based complaint tracking web application*
+<p>
+  <a href="https://github.com/jagratsati45/complain_system_project/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/jagratsati45/complain_system_project?style=for-the-badge"></a>
+  <a href="https://github.com/jagratsati45/complain_system_project/network/members"><img alt="Forks" src="https://img.shields.io/github/forks/jagratsati45/complain_system_project?style=for-the-badge"></a>
+  <a href="https://github.com/jagratsati45/complain_system_project/issues"><img alt="Issues" src="https://img.shields.io/github/issues/jagratsati45/complain_system_project?style=for-the-badge"></a>
+  <a href="https://github.com/jagratsati45/complain_system_project/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/jagratsati45/complain_system_project?style=for-the-badge"></a>
+</p>
 
-<br/>
+<p>
+  <img alt="PHP" src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white" />
+  <img alt="MySQL" src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" />
+  <img alt="HTML" src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
+  <img alt="CSS" src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" />
+  <img alt="JS" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
+</p>
 
-![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+<p><b>Status:</b> In Development • <b>Focus:</b> Multi-role auth + complaint routing • <b>Type:</b> College mini-project</p>
 
-<br/>
+<a href="#-quick-start">Quick Start</a> •
+<a href="#-features">Features</a> •
+<a href="#-roles--permissions">Roles</a> •
+<a href="#-project-structure">Structure</a> •
+<a href="#-database-setup">Database</a> •
+<a href="#-screenshots">Screenshots</a> •
+<a href="#-contributing">Contributing</a>
 
-![Status](https://img.shields.io/badge/Status-In%20Development-orange?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
-![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square&logo=github)
-![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red?style=flat-square)
+<br/><br/>
 
 </div>
 
 ---
 
-## 📌 Table of Contents
+## Why this project?
+Complaint handling becomes messy when messages are scattered across chats/calls. This system centralizes complaints so:
 
-- [About the Project](#-about-the-project)
-- [Features](#-features)
-- [User Roles](#-user-roles)
-- [Project Structure](#-project-structure)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-- [Database Setup](#-database-setup)
-- [Screenshots](#-screenshots)
-- [Contributing](#-contributing)
-- [License](#-license)
-
----
-
-## 🧾 About the Project
-
-> 🎯 **Complaint Management System** is a full-stack web application that provides an organized platform for users to **submit complaints**, departments to **resolve them**, and admins to **oversee the entire process** — all from a clean, role-based dashboard.
-
-This project was built as a **college mini-project** to demonstrate multi-role authentication, CRUD operations, and department-based complaint routing using **vanilla PHP + MySQL** — no heavy frameworks, just clean fundamentals.
-
-Whether you're a student, institution, or organization — this system helps bridge the gap between complaint-raiser and resolver. 🚀
+- **Users** can raise issues and track progress
+- **Departments** can manage assigned complaints and update statuses
+- **Admins** can control routing, users/departments, and system oversight
 
 ---
 
 ## ✨ Features
 
-| Feature | Status |
-|---|---|
-| 🔐 User Registration & Login | ✅ Done |
-| 👤 Role-based Authentication (Admin / User / Department) | ✅ Done |
-| 📝 Complaint Submission |  ✅ Done  |
-| 📂 Department-wise Complaint Routing | ✅ Done |
-| ✅ Complaint Status Tracking | ✅ Done  |
-| 🛠️ Admin Dashboard | ✅ Done  |
-| 📊 Complaint Analytics | ⏳ Planned |
-| 📧 Email Notifications | ⏳ Planned |
+<table>
+  <tr>
+    <th align="left">Feature</th>
+    <th align="left">Description</th>
+    <th align="center">Status</th>
+  </tr>
+  <tr>
+    <td>🔐 Authentication</td>
+    <td>Login/Register + role-based access (Admin/User/Department)</td>
+    <td align="center">✅</td>
+  </tr>
+  <tr>
+    <td>📝 Complaint Submission</td>
+    <td>Create complaints with category and description</td>
+    <td align="center">✅</td>
+  </tr>
+  <tr>
+    <td>📂 Complaint Routing</td>
+    <td>Assign complaints to departments</td>
+    <td align="center">✅</td>
+  </tr>
+  <tr>
+    <td>📌 Status Tracking</td>
+    <td>Pending → In Progress → Resolved</td>
+    <td align="center">✅</td>
+  </tr>
+  <tr>
+    <td>🛡️ Admin Dashboard</td>
+    <td>Central control panel for management</td>
+    <td align="center">✅</td>
+  </tr>
+  <tr>
+    <td>📊 Analytics</td>
+    <td>Complaint counts, trends, department load</td>
+    <td align="center">⏳ Planned</td>
+  </tr>
+  <tr>
+    <td>📧 Notifications</td>
+    <td>Email alerts on status change</td>
+    <td align="center">⏳ Planned</td>
+  </tr>
+</table>
 
 ---
 
-## 👥 User Roles
+## 👥 Roles & Permissions
 
-The system has **three distinct roles**, each with its own dashboard and access level:
+<details open>
+  <summary><b>🙋 User</b></summary>
+  <ul>
+    <li>Create an account and login</li>
+    <li>Submit new complaints</li>
+    <li>Track complaint status</li>
+    <li>View complaint history</li>
+  </ul>
+</details>
 
-### 🙋 User
-- Register and log in to the system
-- Submit new complaints with description and category
-- Track the status of submitted complaints
-- View complaint history
+<details>
+  <summary><b>🏢 Department</b></summary>
+  <ul>
+    <li>View complaints assigned to the department</li>
+    <li>Update complaint status (Pending → In Progress → Resolved)</li>
+    <li>Add resolution remarks/notes</li>
+  </ul>
+</details>
 
-### 🏢 Department
-- Log in to a department-specific dashboard
-- View complaints assigned to the department
-- Update complaint status (Pending → In Progress → Resolved)
-- Add resolution notes or remarks
-
-### 🛡️ Admin
-- Full system oversight from a central dashboard
-- Manage all users and departments
-- Assign complaints to appropriate departments
-- View analytics and complaint statistics
-- Delete or escalate complaints
+<details>
+  <summary><b>🛡️ Admin</b></summary>
+  <ul>
+    <li>Manage users and departments</li>
+    <li>Assign complaints to departments</li>
+    <li>Oversee all complaint activity</li>
+    <li>(Planned) View analytics dashboard</li>
+  </ul>
+</details>
 
 ---
 
-## 🗂️ Project Structure
+## 🧱 Project Structure
 
-```
+```text
 complain_system_project/
-│
-├── 📁 admin/               # Admin dashboard & management pages
-├── 📁 auth/                # Authentication processors
+├── admin/                 # Admin dashboard & management pages
+├── auth/                  # Authentication processors
 │   ├── login_process.php
 │   └── register_process.php
-├── 📁 assets/
+├── assets/
 │   └── css/               # Shared stylesheets
-├── 📁 config/              # Database connection & configuration
-├── 📁 department/          # Department dashboard
-├── 📁 user/                # User dashboard & complaint pages
-│
-├── 📄 login.php            # Login page (entry point)
-├── 📄 register.php         # Registration page
-├── 📄 login.css            # Login page styles
-├── 📄 register.css         # Register page styles
-└── 📄 .gitignore
+├── config/                # Database connection & configuration
+├── department/            # Department dashboard
+├── user/                  # User dashboard & complaint pages
+├── login.php              # Login page (entry point)
+├── register.php           # Registration page
+├── login.css              # Login page styles
+├── register.css           # Register page styles
+└── .gitignore
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-| Layer | Technology |
-|---|---|
-| 🖥️ Frontend | HTML5, CSS3, Vanilla JavaScript |
-| ⚙️ Backend | PHP (vanilla, no framework) |
-| 🗄️ Database | MySQL |
-| 🔗 Communication | Fetch API (AJAX) |
-| 🎨 Styling | Custom CSS |
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript  
+- **Backend:** PHP (vanilla, no framework)  
+- **Database:** MySQL  
+- **Async requests:** Fetch API (AJAX)
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-### Prerequisites
-
-Make sure you have the following installed:
-
-- ![XAMPP](https://img.shields.io/badge/XAMPP-FB7A24?style=flat-square&logo=xampp&logoColor=white) **XAMPP** (or any local server with PHP + MySQL)
-- A browser (Chrome, Firefox, etc.)
-- Git
-
----
-
-### 🧰 Installation
-
-**1. Clone the repository**
-
+### 1) Clone the repo
 ```bash
 git clone https://github.com/jagratsati45/complain_system_project.git
 ```
 
-**2. Move to your server's root directory**
-
+### 2) Move into your server directory (XAMPP example)
+**Windows**
 ```bash
-# For XAMPP on Windows
 cp -r complain_system_project C:/xampp/htdocs/
+```
 
-# For XAMPP on Linux/Mac
+**Linux/Mac**
+```bash
 cp -r complain_system_project /opt/lampp/htdocs/
 ```
 
-**3. Start Apache & MySQL** from the XAMPP Control Panel
+### 3) Start services
+Start **Apache** and **MySQL** from the XAMPP Control Panel.
 
-**4. Set up the database** (see [Database Setup](#-database-setup) below)
-
-**5. Configure the DB connection**
-
-Open `config/db.php` (or similar) and update:
+### 4) Configure DB connection
+Open your DB config file (commonly `config/db.php`) and set credentials:
 
 ```php
 <?php
@@ -179,72 +197,96 @@ if (!$conn) {
 ?>
 ```
 
-**6. Open the app in your browser**
-
-```
+### 5) Run the project
+Open:
+```text
 http://localhost/complain_system_project/login.php
 ```
 
 ---
 
+## 🗄 Database Setup
 
+> If your repo does not include a `.sql` file yet, create the database manually first, then import the schema when available.
+
+1. Open phpMyAdmin:  
+   `http://localhost/phpmyadmin`
+
+2. Create database:
+   - Name: `complain_system`
+
+3. Import your SQL schema (recommended):
+   - `complain_system.sql` (add this file to repo when ready)
+
+---
 
 ## 🔐 Default Test Credentials
 
+> Change these after first run (recommended).
+
 | Role | Email | Password |
-|---|---|---|
+|------|-------|----------|
 | Admin | admin@system.com | admin123 |
 | User | Register yourself | — |
-| Department | Set up via admin | — |
+| Department | Create via admin | — |
+
+---
+
+## 🖼 Screenshots
+
+> Add screenshots in a folder like `assets/screenshots/` and link them here.
+
+<details>
+  <summary><b>Example placeholders (replace with real images)</b></summary>
+
+  - `assets/screenshots/login.png`
+  - `assets/screenshots/admin-dashboard.png`
+  - `assets/screenshots/user-complaints.png`
+
+</details>
+
+---
+
+## 🧩 Roadmap
+
+- [ ] Add SQL schema file (`complain_system.sql`)
+- [ ] Implement `password_hash()` + `password_verify()`
+- [ ] Add session-based auth checks on all dashboards
+- [ ] Add admin analytics dashboard
+- [ ] Email notifications on complaint status updates
+- [ ] Improve UI + mobile responsiveness
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are **always welcome**! Here's how you can help:
+Contributions are welcome.
 
 ```bash
 # 1. Fork the project
 # 2. Create your feature branch
-git checkout -b feature/AmazingFeature
+git checkout -b feature/amazing-feature
 
 # 3. Commit your changes
-git commit -m "feat: add AmazingFeature"
+git commit -m "feat: add amazing feature"
 
-# 4. Push to the branch
-git push origin feature/AmazingFeature
+# 4. Push to GitHub
+git push origin feature/amazing-feature
 
-# 5. Open a Pull Request 🎉
+# 5. Open a Pull Request
 ```
-
-### 💡 Ideas for Contributions
-
-- [ ] Add `README` (you're reading it! ✅)
-- [ ] Build the complaint submission page
-- [ ] Add session-based auth checks on all dashboards
-- [ ] Implement `password_hash()` in registration
-- [ ] Add SQL schema file to the repo
-- [ ] Build admin analytics dashboard
-- [ ] Add email notifications on complaint status change
-- [ ] Make the UI mobile-responsive
 
 ---
 
 ## 📄 License
 
-Distributed under the **MIT License**. See `LICENSE` for more information.
+MIT — see the [LICENSE](./LICENSE) file.
 
 ---
 
 <div align="center">
 
-### 🌟 If you find this project helpful, give it a star!
-
-[![Star on GitHub](https://img.shields.io/github/stars/jagratsati45/complain_system_project?style=social)](https://github.com/jagratsati45/complain_system_project)
-
-<br/>
-
-Made with ❤️ by [jagratsati45](https://github.com/jagratsati45)
-
+### If you find this project useful, please ⭐ the repo
+Made by <a href="https://github.com/jagratsati45">jagratsati45</a>
 
 </div>
